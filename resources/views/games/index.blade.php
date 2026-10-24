@@ -19,6 +19,7 @@
 
     @role('admin')
         <p>Welkom beheerder! Je hebt volledige toegang.</p>
+        <p><a href="/beheer/permissies">Naar de beheeromgeving</a></p>
     @endrole
 
     @role('klant')
