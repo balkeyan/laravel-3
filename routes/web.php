@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\PermissieController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -35,3 +36,14 @@ require __DIR__.'/auth.php';
 Route::get('/geheim', function () {
     return view('geheim');
 })->middleware('auth');
+
+// Beheeromgeving, alleen voor de admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    // permissies
+    Route::get('/beheer/permissies', [PermissieController::class, 'index']);
+    Route::get('/beheer/permissies/create', [PermissieController::class, 'create']);
+    Route::post('/beheer/permissies/store', [PermissieController::class, 'store']);
+    Route::get('/beheer/permissies/edit/{id}', [PermissieController::class, 'edit']);
+    Route::post('/beheer/permissies/update/{id}', [PermissieController::class, 'update']);
+    Route::post('/beheer/permissies/destroy/{id}', [PermissieController::class, 'destroy']);
+});
