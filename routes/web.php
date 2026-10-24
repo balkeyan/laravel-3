@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PermissieController;
+use App\Http\Controllers\RolController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -46,4 +47,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/beheer/permissies/edit/{id}', [PermissieController::class, 'edit']);
     Route::post('/beheer/permissies/update/{id}', [PermissieController::class, 'update']);
     Route::post('/beheer/permissies/destroy/{id}', [PermissieController::class, 'destroy']);
+
+    // rollen
+    Route::get('/beheer/rollen', [RolController::class, 'index']);
+    Route::get('/beheer/rollen/create', [RolController::class, 'create']);
+    Route::post('/beheer/rollen/store', [RolController::class, 'store']);
+    Route::get('/beheer/rollen/edit/{id}', [RolController::class, 'edit']);
+    Route::post('/beheer/rollen/update/{id}', [RolController::class, 'update']);
+    Route::post('/beheer/rollen/destroy/{id}', [RolController::class, 'destroy']);
 });
